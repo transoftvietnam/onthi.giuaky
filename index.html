@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ôn tập Hán ngữ 1</title>
+<style>
+:root{--bg:#f4f6fb;--card:#fff;--text:#1d2433;--muted:#5d6678;--line:#dde2ec;--primary:#2f5bea;--primary-weak:#e7edff;--ok:#1f8f4e;--ok-weak:#e3f5ea;--bad:#c62f2f;--bad-weak:#fde8e8;--info-weak:#fff6e0;--info:#8a5a00}
+@media (prefers-color-scheme:dark){:root{--bg:#12151c;--card:#1b2030;--text:#e7eaf2;--muted:#9aa3b5;--line:#2c3346;--primary:#7b9bff;--primary-weak:#24305a;--ok:#4cc985;--ok-weak:#16352a;--bad:#ff7a7a;--bad-weak:#3d1e22;--info-weak:#3a2f14;--info:#f0c36a}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans SC","Microsoft YaHei",Arial,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:20px 16px 80px}
+h1{font-size:1.6rem;margin:8px 0 4px}
+h2{font-size:1.2rem;margin:0 0 12px}
+h3{font-size:1.05rem;margin:22px 0 4px;color:var(--primary)}
+.muted{color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin:14px 0}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+label.field{display:block;font-weight:600;margin-bottom:6px}
+input[type=text],textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;background:var(--card);color:var(--text)}
+input.err{border-color:var(--bad);background:var(--bad-weak)}
+.errmsg{color:var(--bad);font-size:.92rem;margin-top:8px;min-height:1.2em}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.exam-btn{text-align:left;padding:14px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text);cursor:pointer;font:inherit}
+.exam-btn:hover{border-color:var(--primary);background:var(--primary-weak)}
+.exam-btn b{display:block;font-size:1.1rem}
+.bar{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line);margin:0 -16px;padding:10px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.timer{font-variant-numeric:tabular-nums;font-weight:700;font-size:1.25rem;padding:4px 12px;border-radius:8px;background:var(--primary-weak);color:var(--primary)}
+.timer.low{background:var(--bad-weak);color:var(--bad)}
+.spacer{flex:1}
+.progress{color:var(--muted);font-size:.95rem}
+button.main{padding:10px 18px;border:0;border-radius:8px;background:var(--primary);color:#fff;font:inherit;font-weight:600;cursor:pointer}
+button.ghost{padding:10px 18px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--text);font:inherit;cursor:pointer}
+.part{margin-top:26px;font-size:1.25rem}
+.q .qt{font-weight:600;margin-bottom:10px;white-space:pre-wrap}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;border:1px solid var(--line);border-radius:8px;margin:6px 0;cursor:pointer}
+.opt:hover{border-color:var(--primary)}
+.opt input{margin-top:6px}
+.opt.sel{border-color:var(--primary);background:var(--primary-weak)}
+.sub{margin:12px 0}
+.sub .p{margin-bottom:6px}
+.score{font-size:2.6rem;font-weight:800;margin:4px 0}
+.stats{display:flex;gap:8px 20px;flex-wrap:wrap;color:var(--muted)}
+.note{background:var(--info-weak);color:var(--info);padding:10px 12px;border-radius:8px;margin-top:12px;font-size:.95rem}
+.wrong{border-left:4px solid var(--bad);background:var(--bad-weak);padding:12px 14px;border-radius:8px;margin:10px 0}
+.ref{border-left:4px solid var(--info);background:var(--info-weak);padding:12px 14px;border-radius:8px;margin:10px 0}
+.wrong .qt,.ref .qt{font-weight:600;white-space:pre-wrap;margin-bottom:6px}
+.ans-bad{color:var(--bad);font-weight:600}
+.ans-ok{color:var(--ok);font-weight:600}
+.allok{background:var(--ok-weak);color:var(--ok);padding:12px 14px;border-radius:8px;font-weight:600}
+.hidden{display:none}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<section id="home">
+  <h1>Ôn tập giữa kỳ Hán ngữ 1 (Bài 10–20)</h1>
+  <p class="muted">Thời gian làm bài: <b>30 phút</b>. Hết giờ hệ thống tự nộp bài. Không tải lại trang trong khi làm bài.</p>
+  <div class="card">
+    <div class="fields">
+      <div><label class="field" for="name">Họ và tên</label><input id="name" type="text" placeholder="Nguyễn Văn A" autocomplete="name"></div>
+      <div><label class="field" for="cls">Lớp đang học</label><input id="cls" type="text" placeholder="Ví dụ: TQ01"></div>
+    </div>
+    <div class="errmsg" id="homeErr"></div>
+  </div>
+  <div class="card">
+    <h2>Chọn đề</h2>
+    <div class="grid" id="examList"></div>
+    <p class="muted" style="margin:12px 0 0;font-size:.93rem">Mỗi đề gồm 40 câu trắc nghiệm và 4 câu tự luận. Phần tự luận gõ bằng chữ Hán (bật bộ gõ tiếng Trung).</p>
+  </div>
+</section>
+
+<section id="quiz" class="hidden">
+  <div class="bar">
+    <b id="quizTitle"></b>
+    <span class="progress" id="progress"></span>
+    <span class="spacer"></span>
+    <span class="timer" id="timer">30:00</span>
+    <button class="main" id="submitBtn">Nộp bài</button>
+  </div>
+  <div id="questions"></div>
+  <div class="actions"><button class="main" id="submitBtn2">Nộp bài</button></div>
+</section>
+
+<section id="result" class="hidden">
+  <div class="card">
+    <div class="muted" id="resInfo"></div>
+    <div class="score" id="resScore"></div>
+    <div class="stats" id="resStats"></div>
+    <div class="note">Câu 43 (dịch sang tiếng Việt, 0,6 điểm) không chấm tự động. Em tự đối chiếu với đáp án tham khảo ở cuối trang. Phần tự luận được chấm theo đáp án, không tính dấu câu và khoảng trắng.</div>
+    <div class="actions">
+      <button class="main" id="retryBtn">Làm lại đề này</button>
+      <button class="ghost" id="homeBtn">Chọn đề khác</button>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Các câu làm sai hoặc bỏ trống</h2>
+    <div id="wrongList"></div>
+  </div>
+  <div class="card">
+    <h2>Câu 43: đáp án tham khảo</h2>
+    <div id="refList"></div>
+  </div>
+</section>
+
+</div>
+
+<script>
+const EXAMS = [{"code": "101", "title": "Mã đề 101", "mcq": [{"n": 1, "section": "Chọn phiên âm đúng cho từ sau", "q": "留学生", "options": ["niúxuéshēng", "liǔxuéshēng", "liúxuéshēng", "liúxuéshēn"], "answer": 2}, {"n": 2, "section": null, "q": "介绍", "options": ["jièsào", "jièshāo", "jiěshào", "jièshào"], "answer": 3}, {"n": 3, "section": null, "q": "语法", "options": ["yǔfā", "yǔhuǎ", "yǔfǎ", "yúfǎ"], "answer": 2}, {"n": 4, "section": null, "q": "词典", "options": ["cìdiǎn", "cídiǎn", "chídiǎn", "cídiān"], "answer": 1}, {"n": 5, "section": null, "q": "颜色", "options": ["yánsè", "yánsē", "yánshè", "yǎnsè"], "answer": 0}, {"n": 6, "section": null, "q": "职员", "options": ["zíyuán", "zhíyuǎn", "zhíyuán", "zhīyuán"], "answer": 2}, {"n": 7, "section": null, "q": "复习", "options": ["hùxí", "fùxí", "fùxī", "fúxí"], "answer": 1}, {"n": 8, "section": null, "q": "音乐", "options": ["yìnyuè", "yīnlè", "yīnyuè", "yīngyuè"], "answer": 2}, {"n": 9, "section": null, "q": "邮票", "options": ["yóupiào", "yóupiāo", "yóubiào", "yǒupiào"], "answer": 0}, {"n": 10, "section": null, "q": "生日", "options": ["shèngrì", "shēnrì", "shēngrè", "shēngrì"], "answer": 3}, {"n": 11, "section": "Từ vựng: chọn đáp án đúng nghĩa", "q": "Từ nào có nghĩa là “giới thiệu”?", "options": ["介绍", "学习", "知道", "欢迎"], "answer": 0}, {"n": 12, "section": null, "q": "Từ nào có nghĩa là “bạn học, bạn cùng lớp”?", "options": ["老师", "职员", "同学", "朋友"], "answer": 2}, {"n": 13, "section": null, "q": "Từ nào có nghĩa là “ngữ pháp”?", "options": ["语法", "汉字", "生词", "口语"], "answer": 0}, {"n": 14, "section": null, "q": "Từ nào có nghĩa là “dễ, dễ dàng”?", "options": ["但是", "比较", "觉得", "容易"], "answer": 3}, {"n": 15, "section": null, "q": "Từ nào có nghĩa là “bệnh viện”?", "options": ["医院", "宿舍", "公司", "商店"], "answer": 0}, {"n": 16, "section": null, "q": "“常” có nghĩa là:", "options": ["rất", "thường, thường xuyên", "đều", "cũng"], "answer": 1}, {"n": 17, "section": null, "q": "“借” có nghĩa là:", "options": ["mượn", "gửi", "trả", "mua"], "answer": 0}, {"n": 18, "section": null, "q": "“顺便” có nghĩa là:", "options": ["một chút", "có lúc", "cùng nhau", "nhân thể, tiện thể"], "answer": 3}, {"n": 19, "section": null, "q": "“合适” có nghĩa là:", "options": ["đẹp", "rẻ", "đắt", "vừa vặn, thích hợp"], "answer": 3}, {"n": 20, "section": null, "q": "“祝” có nghĩa là:", "options": ["tặng", "chúc", "tham gia", "mời"], "answer": 1}, {"n": 21, "section": "Chọn chữ Hán viết đúng cho phiên âm sau", "q": "xīn (mới)", "options": ["辛", "亲", "心", "新"], "answer": 3}, {"n": 22, "section": null, "q": "dōu (đều)", "options": ["邮", "都", "部", "者"], "answer": 1}, {"n": 23, "section": null, "q": "jiāo (dạy)", "options": ["教", "叫", "较", "孝"], "answer": 0}, {"n": 24, "section": null, "q": "jiù (cũ)", "options": ["久", "救", "日", "旧"], "answer": 3}, {"n": 25, "section": null, "q": "jiā (nhà)", "options": ["冢", "家", "宋", "加"], "answer": 1}, {"n": 26, "section": null, "q": "tóngxué (bạn học)", "options": ["同觉", "司学", "同字", "同学"], "answer": 3}, {"n": 27, "section": null, "q": "yīfu (quần áo)", "options": ["衣朋", "依服", "衣服", "衣报"], "answer": 2}, {"n": 28, "section": null, "q": "fángjiān (phòng)", "options": ["房闻", "房问", "防间", "房间"], "answer": 3}, {"n": 29, "section": null, "q": "xiūxi (nghỉ ngơi)", "options": ["休息", "休思", "体息", "休自"], "answer": 0}, {"n": 30, "section": null, "q": "wǎnhuì (dạ hội, buổi tiệc tối)", "options": ["晚今", "晚会", "晚合", "挽会"], "answer": 1}, {"n": 31, "section": "Cấu trúc câu: chọn đáp án đúng", "q": "我们＿＿是留学生。", "options": ["太", "的", "都", "吗"], "answer": 2}, {"n": 32, "section": null, "q": "你在＿＿学习汉语？——在北京语言大学。", "options": ["什么", "哪儿", "几", "谁"], "answer": 1}, {"n": 33, "section": null, "q": "这＿＿药？——这不是药，这是茶叶。", "options": ["是不是", "不是是", "是没是", "是吗"], "answer": 0}, {"n": 34, "section": null, "q": "你的车是新的＿＿旧的？", "options": ["都", "还是", "和", "也"], "answer": 1}, {"n": 35, "section": null, "q": "你家有＿＿口人？——我家有五口人。", "options": ["哪", "谁", "几", "什么"], "answer": 2}, {"n": 36, "section": null, "q": "我有一＿＿词典。", "options": ["本", "把", "张", "支"], "answer": 0}, {"n": 37, "section": null, "q": "Câu nào đúng ngữ pháp?", "options": ["常我去图书馆借书。", "我去常图书馆借书。", "我常去图书馆借书。", "我图书馆常去借书。"], "answer": 2}, {"n": 38, "section": null, "q": "他＿＿听音乐呢。", "options": ["一起", "有时候", "常常", "正在"], "answer": 3}, {"n": 39, "section": null, "q": "这件羽绒服有一点儿长，有短＿＿的吗？", "options": ["很", "一点儿", "有点儿", "一下儿"], "answer": 1}, {"n": 40, "section": null, "q": "Câu nào đúng ngữ pháp?", "options": ["你的生日是几号几月？", "你生日的是月几号？", "你的生日是几月几号？", "你的生日几号是几月？"], "answer": 2}], "q41": [{"prompt": "zīliào", "answer": "资料", "accept": ["资料"]}, {"prompt": "lǚxíng", "answer": "旅行", "accept": ["旅行"]}, {"prompt": "tóngwū", "answer": "同屋", "accept": ["同屋"]}, {"prompt": "hàomǎ", "answer": "号码", "accept": ["号码"]}, {"prompt": "zìxíngchē", "answer": "自行车", "accept": ["自行车"]}, {"prompt": "xiāngshuǐ", "answer": "香水", "accept": ["香水"]}, {"prompt": "shàngwǎng", "answer": "上网", "accept": ["上网"]}, {"prompt": "ānjìng", "answer": "安静", "accept": ["安静"]}, {"prompt": "bāoguǒ", "answer": "包裹", "accept": ["包裹"]}, {"prompt": "bìyè", "answer": "毕业", "accept": ["毕业"]}], "q42": [{"prompt": "都 / 我们 / 留学生 / 是", "answer": "我们都是留学生。", "accept": ["我们都是留学生"]}, {"prompt": "在 / 学习 / 你 / 哪儿 / 汉语", "answer": "你在哪儿学习汉语？", "accept": ["你在哪儿学习汉语？"]}, {"prompt": "是 / 还是 / 新的 / 你的车 / 旧的", "answer": "你的车是新的还是旧的？", "accept": ["你的车是新的还是旧的？"]}, {"prompt": "照片 / 全家 / 的 / 我们 / 这是", "answer": "这是我们全家的照片。", "accept": ["这是我们全家的照片"]}, {"prompt": "呢 / 他 / 音乐 / 正在 / 听", "answer": "他正在听音乐呢。", "accept": ["他正在听音乐呢", "他正在听音乐"]}], "q43": [{"prompt": "欢迎您，王教授！", "answer": "Hoan nghênh ông (thầy), giáo sư Vương!"}, {"prompt": "那个箱子里是什么？", "answer": "Trong cái va li kia là gì?"}, {"prompt": "最近工作忙不忙？", "answer": "Dạo này công việc có bận không?"}, {"prompt": "我常借书，也常在那儿看书。", "answer": "Tôi thường mượn sách, cũng thường đọc sách ở đó."}, {"prompt": "这件羽绒服又好又便宜。", "answer": "Chiếc áo lông vũ này vừa tốt vừa rẻ."}, {"prompt": "祝你生日快乐！", "answer": "Chúc bạn sinh nhật vui vẻ!"}], "q44": [{"prompt": "Tôi đi bưu điện gửi bưu kiện.", "answer": "我去邮局寄包裹。", "accept": ["我去邮局寄包裹"]}, {"prompt": "Bạn năm nay bao nhiêu tuổi?", "answer": "你今年多大？", "accept": ["你今年多大？", "你今年多大了？"]}, {"prompt": "Tôi muốn mua một cuốn từ điển Hán – Anh.", "answer": "我想买一本《汉英词典》。", "accept": ["我想买一本《汉英词典》", "我想买一本汉英词典"]}]}, {"code": "102", "title": "Mã đề 102", "mcq": [{"n": 1, "section": "Chọn phiên âm đúng cho từ sau", "q": "欢迎", "options": ["huānyín", "huànyíng", "fānyíng", "huānyíng"], "answer": 3}, {"n": 2, "section": null, "q": "教授", "options": ["jiàosòu", "jiāoshòu", "jiàoshòu", "jiàoshǒu"], "answer": 2}, {"n": 3, "section": null, "q": "校长", "options": ["xiàozhǎng", "xiàozhāng", "xiāozhǎng", "xiàozǎng"], "answer": 0}, {"n": 4, "section": null, "q": "东西 (đồ vật)", "options": ["tōngxi", "dōngxi", "dǒngxi", "dōngsi"], "answer": 1}, {"n": 5, "section": null, "q": "资料", "options": ["zìliào", "zīliáo", "zhīliào", "zīliào"], "answer": 3}, {"n": 6, "section": null, "q": "自行车", "options": ["zìxíngchē", "zìxíngcē", "zìxínchē", "zhìxíngchē"], "answer": 0}, {"n": 7, "section": null, "q": "律师", "options": ["lǜsī", "lǜshī", "lùshī", "lǜshí"], "answer": 1}, {"n": 8, "section": null, "q": "伊妹儿", "options": ["yìmèir", "yīmèir", "yīmèiér", "yīmēir"], "answer": 1}, {"n": 9, "section": null, "q": "包裹", "options": ["bàoguǒ", "pāoguǒ", "bāoguō", "bāoguǒ"], "answer": 3}, {"n": 10, "section": null, "q": "便宜", "options": ["piānyi", "piányì", "piányi", "biànyi"], "answer": 2}, {"n": 11, "section": "Từ vựng: chọn đáp án đúng nghĩa", "q": "Từ nào có nghĩa là “hoan nghênh, chào mừng”?", "options": ["介绍", "学习", "知道", "欢迎"], "answer": 3}, {"n": 12, "section": null, "q": "Từ nào có nghĩa là “dạy”?", "options": ["说", "教", "学", "写"], "answer": 1}, {"n": 13, "section": null, "q": "Từ nào có nghĩa là “yên tĩnh”?", "options": ["晚上", "休息", "安静", "宿舍"], "answer": 2}, {"n": 14, "section": null, "q": "Từ nào có nghĩa là “quần áo”?", "options": ["箱子", "东西", "衣服", "雨伞"], "answer": 2}, {"n": 15, "section": null, "q": "Từ nào có nghĩa là “màu sắc”?", "options": ["自行车", "汽车", "蓝", "颜色"], "answer": 3}, {"n": 16, "section": null, "q": "“大夫” có nghĩa là:", "options": ["bác sĩ", "nhân viên", "luật sư", "giáo sư"], "answer": 0}, {"n": 17, "section": null, "q": "“复习” có nghĩa là:", "options": ["chuẩn bị bài", "nghỉ ngơi", "ôn tập", "luyện tập"], "answer": 2}, {"n": 18, "section": null, "q": "“替” có nghĩa là:", "options": ["tiện thể", "gửi", "cùng", "thay, thế, giùm"], "answer": 3}, {"n": 19, "section": null, "q": "“浅” có nghĩa là:", "options": ["ngắn", "nhạt", "dài", "đậm, sẫm"], "answer": 1}, {"n": 20, "section": null, "q": "“毕业” có nghĩa là:", "options": ["nhập học", "tham quan", "tốt nghiệp", "khai giảng"], "answer": 2}, {"n": 21, "section": "Chọn chữ Hán viết đúng cho phiên âm sau", "q": "liúxué (du học)", "options": ["留字", "留学", "流学", "溜学"], "answer": 1}, {"n": 22, "section": null, "q": "yǔyán (ngôn ngữ)", "options": ["话言", "语言", "吾言", "语音"], "answer": 1}, {"n": 23, "section": null, "q": "shū (sách)", "options": ["书", "节", "韦", "毛"], "answer": 0}, {"n": 24, "section": null, "q": "hóng (đỏ)", "options": ["工", "江", "红", "虹"], "answer": 2}, {"n": 25, "section": null, "q": "kāfēi (cà phê)", "options": ["珈啡", "咖非", "咖啡", "加啡"], "answer": 2}, {"n": 26, "section": null, "q": "tóngwū (bạn cùng phòng)", "options": ["同屋", "同尾", "同局", "司屋"], "answer": 0}, {"n": 27, "section": null, "q": "diànshì (ti vi)", "options": ["店视", "电视", "电现", "电试"], "answer": 1}, {"n": 28, "section": null, "q": "yóupiào (tem)", "options": ["邮栗", "邮票", "邮漂", "由票"], "answer": 1}, {"n": 29, "section": null, "q": "héshì (vừa vặn)", "options": ["合适", "合活", "和适", "合是"], "answer": 0}, {"n": 30, "section": null, "q": "kuàilè (vui vẻ)", "options": ["筷乐", "块乐", "快乐", "快东"], "answer": 2}, {"n": 31, "section": "Cấu trúc câu: chọn đáp án đúng", "q": "你们＿＿是留学生吗？——我们都是留学生。", "options": ["都", "很", "太", "呢"], "answer": 0}, {"n": 32, "section": null, "q": "我在北京语言大学＿＿汉语。", "options": ["在", "有", "学习", "是"], "answer": 2}, {"n": 33, "section": null, "q": "Câu hỏi chính phản nào đúng?", "options": ["这不是是你的书？", "这是你的书不吗？", "这是不是你的书吗？", "这是不是你的书？"], "answer": 3}, {"n": 34, "section": null, "q": "喝点儿什么？茶＿＿咖啡？", "options": ["都", "和", "也", "还是"], "answer": 3}, {"n": 35, "section": null, "q": "你们公司有＿＿职员？——大概有一百多个。", "options": ["多少", "哪", "几", "什么"], "answer": 0}, {"n": 36, "section": null, "q": "我有一＿＿雨伞。", "options": ["张", "把", "支", "本"], "answer": 1}, {"n": 37, "section": null, "q": "Câu nào đúng ngữ pháp?", "options": ["他正在打电话呢。", "他打电话正在呢。", "正在他打电话呢。", "他正在呢打电话。"], "answer": 0}, {"n": 38, "section": null, "q": "你顺便＿＿我买几张邮票吧。", "options": ["都", "的", "在", "替"], "answer": 3}, {"n": 39, "section": null, "q": "这件衣服＿＿贵了，便宜一点儿吧。", "options": ["太", "很", "都", "一点儿"], "answer": 0}, {"n": 40, "section": null, "q": "Câu nào đúng ngữ pháp?", "options": ["今年我岁二十一。", "我今年岁二十一。", "我二十一岁今年。", "我今年二十一岁。"], "answer": 3}], "q41": [{"prompt": "diànyǐng", "answer": "电影", "accept": ["电影"]}, {"prompt": "xīn tóngxué", "answer": "新同学", "accept": ["新同学"]}, {"prompt": "yǔfǎ", "answer": "语法", "accept": ["语法"]}, {"prompt": "zhōngyào", "answer": "中药", "accept": ["中药"]}, {"prompt": "dāngrán", "answer": "当然", "accept": ["当然"]}, {"prompt": "juéde", "answer": "觉得", "accept": ["觉得"]}, {"prompt": "chángcháng", "answer": "常常", "accept": ["常常"]}, {"prompt": "chūzūchē", "answer": "出租车", "accept": ["出租车"]}, {"prompt": "yǔróngfú", "answer": "羽绒服", "accept": ["羽绒服"]}, {"prompt": "wǎnhuì", "answer": "晚会", "accept": ["晚会"]}], "q42": [{"prompt": "介绍 / 一下儿 / 我 / 先", "answer": "我先介绍一下儿。", "accept": ["我先介绍一下儿"]}, {"prompt": "老师 / 你们的 / 谁 / 是", "answer": "你们的老师是谁？", "accept": ["你们的老师是谁？"]}, {"prompt": "药 / 是不是 / 这", "answer": "这是不是药？", "accept": ["这是不是药？"]}, {"prompt": "去 / 借书 / 常 / 图书馆 / 我", "answer": "我常去图书馆借书。", "accept": ["我常去图书馆借书"]}, {"prompt": "邮票 / 替我 / 你 / 买 / 几张 / 顺便", "answer": "你顺便替我买几张邮票。", "accept": ["你顺便替我买几张邮票", "你顺便替我买几张邮票吧"]}], "q43": [{"prompt": "他们俩也都是留学生吗？", "answer": "Hai người họ cũng đều là lưu học sinh à?"}, {"prompt": "听和说也比较容易，但是读和写很难。", "answer": "Nghe và nói cũng tương đối dễ, nhưng đọc và viết rất khó."}, {"prompt": "那辆蓝的是不是你的？", "answer": "Chiếc màu xanh kia có phải của bạn không?"}, {"prompt": "我正听课文录音呢。", "answer": "Tôi đang nghe băng ghi âm bài khóa."}, {"prompt": "我没有哥哥，也没有姐姐，只有两个弟弟。", "answer": "Tôi không có anh trai, cũng không có chị gái, chỉ có hai em trai."}, {"prompt": "太贵了，便宜一点儿吧。", "answer": "Đắt quá, rẻ một chút đi."}], "q44": [{"prompt": "Bạn có thường lên mạng không?", "answer": "你常上网吗？", "accept": ["你常上网吗？", "你常常上网吗？"]}, {"prompt": "Sinh nhật của bạn là ngày mấy tháng mấy?", "answer": "你的生日是几月几号？", "accept": ["你的生日是几月几号？", "你的生日是几月几日？"]}, {"prompt": "Đây không phải là thuốc, đây là chè (lá trà).", "answer": "这不是药，这是茶叶。", "accept": ["这不是药，这是茶叶"]}]}, {"code": "103", "title": "Mã đề 103", "mcq": [{"n": 1, "section": "Chọn phiên âm đúng cho từ sau", "q": "同学", "options": ["tóngxié", "dóngxué", "tóngxué", "tōngxué"], "answer": 2}, {"n": 2, "section": null, "q": "觉得", "options": ["xuéde", "juéde", "juédé", "jiuéde"], "answer": 1}, {"n": 3, "section": null, "q": "语言", "options": ["yúyán", "yǔyǎn", "yǔyán", "yǔyáng"], "answer": 2}, {"n": 4, "section": null, "q": "箱子", "options": ["xiǎngzi", "xiāngzi", "xiāngzhi", "siāngzi"], "answer": 1}, {"n": 5, "section": null, "q": "安静", "options": ["ānjìn", "ānjìng", "ànjìng", "ānqìng"], "answer": 1}, {"n": 6, "section": null, "q": "雨伞", "options": ["yǔsǎn", "yǔshǎn", "yúsǎn", "yǔsān"], "answer": 0}, {"n": 7, "section": null, "q": "有时候", "options": ["yǒu shíhou", "yòu shíhou", "yǒu síhou", "yǒu shíhuo"], "answer": 0}, {"n": 8, "section": null, "q": "电视", "options": ["diǎnshì", "tiànshì", "diànsì", "diànshì"], "answer": 3}, {"n": 9, "section": null, "q": "翻译", "options": ["fānyì", "huānyì", "fānyí", "fānyī"], "answer": 0}, {"n": 10, "section": null, "q": "打折", "options": ["dǎzhē", "dǎzhé", "dǎzé", "dàzhé"], "answer": 1}, {"n": 11, "section": "Từ vựng: chọn đáp án đúng nghĩa", "q": "Từ nào có nghĩa là “cảm thấy, cho rằng”?", "options": ["介绍", "知道", "欢迎", "觉得"], "answer": 3}, {"n": 12, "section": null, "q": "Từ nào có nghĩa là “nghe”?", "options": ["说", "听", "读", "写"], "answer": 1}, {"n": 13, "section": null, "q": "Từ nào có nghĩa là “đồ đạc, đồ vật”?", "options": ["衣服", "香水", "东西", "箱子"], "answer": 2}, {"n": 14, "section": null, "q": "Từ nào có nghĩa là “xe đạp”?", "options": ["出租车", "自行车", "汽车", "摩托车"], "answer": 1}, {"n": 15, "section": null, "q": "Từ nào có nghĩa là “chị gái”?", "options": ["妹妹", "哥哥", "弟弟", "姐姐"], "answer": 3}, {"n": 16, "section": null, "q": "“最近” có nghĩa là:", "options": ["gần đây", "năm ngoái", "cuối tuần", "ngày mai"], "answer": 0}, {"n": 17, "section": null, "q": "“上网” có nghĩa là:", "options": ["lên mạng", "nghe nhạc", "xem ti vi", "gửi thư"], "answer": 0}, {"n": 18, "section": null, "q": "“参观” có nghĩa là:", "options": ["phiên dịch", "du lịch", "tham quan", "đại biểu"], "answer": 2}, {"n": 19, "section": null, "q": "“便宜” có nghĩa là:", "options": ["đắt", "đẹp", "rẻ", "vừa vặn"], "answer": 2}, {"n": 20, "section": null, "q": "“参加” có nghĩa là:", "options": ["tham gia", "chuẩn bị", "mời", "chúc mừng"], "answer": 0}, {"n": 21, "section": "Chọn chữ Hán viết đúng cho phiên âm sau", "q": "dàxué (đại học)", "options": ["犬学", "太学", "大学", "大字"], "answer": 2}, {"n": 22, "section": null, "q": "nán (khó)", "options": ["准", "唯", "雅", "难"], "answer": 3}, {"n": 23, "section": null, "q": "zhōngyào (thuốc Bắc)", "options": ["中约", "中乐", "申药", "中药"], "answer": 3}, {"n": 24, "section": null, "q": "hēi (đen)", "options": ["果", "黑", "墨", "里"], "answer": 1}, {"n": 25, "section": null, "q": "gōngsī (công ty)", "options": ["公司", "公可", "工司", "公同"], "answer": 0}, {"n": 26, "section": null, "q": "yīnyuè (âm nhạc)", "options": ["意乐", "音东", "音朱", "音乐"], "answer": 3}, {"n": 27, "section": null, "q": "wǎnshang (buổi tối)", "options": ["晚上", "晚止", "晚土", "免上"], "answer": 0}, {"n": 28, "section": null, "q": "fēijī (máy bay)", "options": ["飞饥", "飞机", "飞肌", "飞几"], "answer": 1}, {"n": 29, "section": null, "q": "piányi (rẻ)", "options": ["使宜", "更宜", "便宣", "便宜"], "answer": 3}, {"n": 30, "section": null, "q": "suì (tuổi)", "options": ["多", "岁", "罗", "歹"], "answer": 1}, {"n": 31, "section": "Cấu trúc câu: chọn đáp án đúng", "q": "他是中国人，我＿＿是中国人。", "options": ["也", "呢", "很", "都"], "answer": 0}, {"n": 32, "section": null, "q": "我＿＿语言大学学习汉语。", "options": ["的", "有", "是", "在"], "answer": 3}, {"n": 33, "section": null, "q": "你最近工作忙＿＿？", "options": ["吗忙", "不忙", "没忙", "呢忙"], "answer": 1}, {"n": 34, "section": null, "q": "你是老师＿＿学生？", "options": ["都", "和", "还是", "也"], "answer": 2}, {"n": 35, "section": null, "q": "你们班有＿＿学生？——十八个。", "options": ["多少", "哪", "什么", "怎么"], "answer": 0}, {"n": 36, "section": null, "q": "一＿＿香水", "options": ["本", "把", "瓶", "张"], "answer": 2}, {"n": 37, "section": null, "q": "Câu nào đúng ngữ pháp?", "options": ["我去有时候公园玩儿。", "有时候我去玩儿公园。", "我去公园玩儿有时候。", "我有时候去公园玩儿。"], "answer": 3}, {"n": 38, "section": null, "q": "他在做什么＿＿？", "options": ["吧", "的", "呢", "吗"], "answer": 2}, {"n": 39, "section": null, "q": "我先介绍＿＿，这位是王教授。", "options": ["有点儿", "一点儿", "一下儿", "都"], "answer": 2}, {"n": 40, "section": null, "q": "Câu nào đúng ngữ pháp?", "options": ["今天星期六十月十八号。", "今天十八号十月星期六。", "今天号十八十月星期六。", "今天十月十八号星期六。"], "answer": 3}], "q41": [{"prompt": "yuèdú", "answer": "阅读", "accept": ["阅读"]}, {"prompt": "shēngcí", "answer": "生词", "accept": ["生词"]}, {"prompt": "guāngpán", "answer": "光盘", "accept": ["光盘"]}, {"prompt": "zhǔnbèi", "answer": "准备", "accept": ["准备"]}, {"prompt": "hǎokàn", "answer": "好看", "accept": ["好看"]}, {"prompt": "dànshì", "answer": "但是", "accept": ["但是"]}, {"prompt": "wàimào", "answer": "外贸", "accept": ["外贸"]}, {"prompt": "fùxí", "answer": "复习", "accept": ["复习"]}, {"prompt": "shāngdiàn", "answer": "商店", "accept": ["商店"]}, {"prompt": "yídìng", "answer": "一定", "accept": ["一定"]}], "q42": [{"prompt": "也 / 我 / 留学生 / 是", "answer": "我也是留学生。", "accept": ["我也是留学生"]}, {"prompt": "谁 / 口语课 / 你们 / 教", "answer": "谁教你们口语课？", "accept": ["谁教你们口语课？"]}, {"prompt": "是 / 什么 / 这些 / 东西", "answer": "这些是什么东西？", "accept": ["这些是什么东西？"]}, {"prompt": "我 / 二十一岁 / 今年", "answer": "我今年二十一岁。", "accept": ["我今年二十一岁", "今年我二十一岁"]}, {"prompt": "一点儿 / 有 / 这件 / 长", "answer": "这件有一点儿长。", "accept": ["这件有一点儿长", "这件有点儿长"]}], "q43": [{"prompt": "请问，这是办公室吗？", "answer": "Xin hỏi, đây có phải là văn phòng không?"}, {"prompt": "这位是新同学，是我的同屋。", "answer": "Đây là bạn học mới, là bạn cùng phòng của tôi."}, {"prompt": "我的很重，你的重不重？", "answer": "Cái của tôi rất nặng, cái của bạn có nặng không?"}, {"prompt": "您身体怎么样？——马马虎虎。", "answer": "Sức khỏe của ông thế nào? – Tàm tạm/Bình thường."}, {"prompt": "晚上你常做什么？", "answer": "Buổi tối bạn thường làm gì?"}, {"prompt": "这件太肥了，有没有瘦一点儿的？", "answer": "Chiếc này rộng quá, có chiếc nào chật hơn một chút không?"}], "q44": [{"prompt": "Anh ấy sống ở đâu?", "answer": "他住哪儿？", "accept": ["他住哪儿？", "他住在哪儿？"]}, {"prompt": "Anh ấy đang xem ti vi.", "answer": "他在看电视呢。", "accept": ["他在看电视呢", "他正在看电视呢", "他正在看电视"]}, {"prompt": "Mẹ tôi là bác sĩ, làm việc ở bệnh viện.", "answer": "我妈妈是大夫，在医院工作。", "accept": ["我妈妈是大夫，在医院工作", "我妈妈是医生，在医院工作", "我妈妈是大夫，她在医院工作"]}]}, {"code": "104", "title": "Mã đề 104", "mcq": [{"n": 1, "section": "Chọn phiên âm đúng cho từ sau", "q": "大学", "options": ["dàxué", "dàxuě", "dàshué", "tàxué"], "answer": 0}, {"n": 2, "section": null, "q": "一下儿", "options": ["yīxiàr", "yíxiàr", "yíshiàr", "yíxiār"], "answer": 1}, {"n": 3, "section": null, "q": "听力", "options": ["tīnlì", "tínglì", "tīnglǐ", "tīnglì"], "answer": 3}, {"n": 4, "section": null, "q": "中药", "options": ["zhōngyāo", "zhòngyào", "zōngyào", "zhōngyào"], "answer": 3}, {"n": 5, "section": null, "q": "汽车", "options": ["qìcē", "jìchē", "qìchē", "qìchě"], "answer": 2}, {"n": 6, "section": null, "q": "照片", "options": ["zhàopiàn", "zhàopiān", "zhàobiàn", "zhāopiàn"], "answer": 0}, {"n": 7, "section": null, "q": "晚上", "options": ["wǎnsang", "wǎngshang", "wánshang", "wǎnshang"], "answer": 3}, {"n": 8, "section": null, "q": "休息", "options": ["shiūxi", "xiūxi", "xiūsi", "xiùxi"], "answer": 1}, {"n": 9, "section": null, "q": "羽绒服", "options": ["yǔróngfū", "yǔróngfù", "yǔlóngfú", "yǔróngfú"], "answer": 3}, {"n": 10, "section": null, "q": "晚会", "options": ["wǎnfèi", "wǎnghuì", "wǎnhuí", "wǎnhuì"], "answer": 3}, {"n": 11, "section": "Từ vựng: chọn đáp án đúng nghĩa", "q": "Từ nào có nghĩa là “giáo sư”?", "options": ["秘书", "校长", "教授", "老师"], "answer": 2}, {"n": 12, "section": null, "q": "Từ nào có nghĩa là “từ điển”?", "options": ["课文", "词典", "生词", "光盘"], "answer": 1}, {"n": 13, "section": null, "q": "Từ nào có nghĩa là “tư liệu, tài liệu”?", "options": ["课文", "报纸", "词典", "资料"], "answer": 3}, {"n": 14, "section": null, "q": "Từ nào có nghĩa là “nhẹ”?", "options": ["轻", "重", "新", "旧"], "answer": 0}, {"n": 15, "section": null, "q": "Từ nào có nghĩa là “siêu thị”?", "options": ["公园", "书店", "宿舍", "超市"], "answer": 3}, {"n": 16, "section": null, "q": "“外国” có nghĩa là:", "options": ["Trung Quốc", "nước ngoài", "trong nước", "ngoại thương"], "answer": 1}, {"n": 17, "section": null, "q": "“骑” có nghĩa là:", "options": ["đi bộ", "cưỡi, đi (xe đạp)", "ngồi", "chen chúc"], "answer": 1}, {"n": 18, "section": null, "q": "“包裹” có nghĩa là:", "options": ["bưu kiện", "tem", "báo", "phong bì"], "answer": 0}, {"n": 19, "section": null, "q": "“试” có nghĩa là:", "options": ["mua", "mặc", "thử", "chọn"], "answer": 2}, {"n": 20, "section": null, "q": "“岁” có nghĩa là:", "options": ["tháng", "năm", "ngày", "tuổi"], "answer": 3}, {"n": 21, "section": "Chọn chữ Hán viết đúng cho phiên âm sau", "q": "jièshào (giới thiệu)", "options": ["介绍", "介沼", "介招", "价绍"], "answer": 0}, {"n": 22, "section": null, "q": "kèwén (bài khóa)", "options": ["课交", "裸文", "果文", "课文"], "answer": 3}, {"n": 23, "section": null, "q": "yǔfǎ (ngữ pháp)", "options": ["语去", "话法", "语法", "吾法"], "answer": 2}, {"n": 24, "section": null, "q": "lán (xanh lam)", "options": ["蓝", "篮", "监", "兰"], "answer": 0}, {"n": 25, "section": null, "q": "yǔsǎn (cái ô, dù)", "options": ["雨金", "雨伞", "两伞", "雨企"], "answer": 1}, {"n": 26, "section": null, "q": "jīnglǐ (giám đốc)", "options": ["经里", "径理", "经理", "轻理"], "answer": 2}, {"n": 27, "section": null, "q": "shàngwǎng (lên mạng)", "options": ["上网", "上罔", "上冈", "下网"], "answer": 0}, {"n": 28, "section": null, "q": "bāoguǒ (bưu kiện)", "options": ["抱裹", "包果", "包裹", "包棵"], "answer": 2}, {"n": 29, "section": null, "q": "duǎn (ngắn)", "options": ["姬", "矩", "短", "豆"], "answer": 2}, {"n": 30, "section": null, "q": "shēngrì (sinh nhật)", "options": ["生目", "生日", "牛日", "主日"], "answer": 1}, {"n": 31, "section": "Cấu trúc câu: chọn đáp án đúng", "q": "我们＿＿是北京语言大学的学生。", "options": ["太", "很", "都", "吗"], "answer": 2}, {"n": 32, "section": null, "q": "你们的老师是＿＿？——是林老师。", "options": ["什么", "谁", "哪儿", "几"], "answer": 1}, {"n": 33, "section": null, "q": "这是不是药？——＿＿，这是中药。", "options": ["是", "不是", "有", "没有"], "answer": 0}, {"n": 34, "section": null, "q": "Câu hỏi lựa chọn nào đúng?", "options": ["你坐飞机去还是坐火车去吗？", "你坐飞机去或者坐火车去？", "你还是坐飞机去坐火车去？", "你坐飞机去还是坐火车去？"], "answer": 3}, {"n": 35, "section": null, "q": "我没有哥哥，＿＿有两个弟弟。", "options": ["太", "只", "都", "很"], "answer": 1}, {"n": 36, "section": null, "q": "我们班有十八＿＿学生。", "options": ["个", "张", "本", "口"], "answer": 0}, {"n": 37, "section": null, "q": "Câu nào đúng ngữ pháp?", "options": ["我在宿舍上网晚上常常。", "我常常晚上上网在宿舍。", "晚上我常常在宿舍上网。", "常常我在宿舍上网晚上。"], "answer": 2}, {"n": 38, "section": null, "q": "喂，你在做什么呢？——我＿＿写汉字呢。", "options": ["一起", "正在", "常常", "有时候"], "answer": 1}, {"n": 39, "section": null, "q": "这件衣服＿＿大，我要小一点儿的。", "options": ["都", "一下儿", "有点儿", "一点儿"], "answer": 2}, {"n": 40, "section": null, "q": "Câu nào đúng ngữ pháp?", "options": ["祝你生日快乐！", "祝你快乐生日！", "你生日祝快乐！", "生日祝你快乐！"], "answer": 0}], "q41": [{"prompt": "diànhuà", "answer": "电话", "accept": ["电话"]}, {"prompt": "cháyè", "answer": "茶叶", "accept": ["茶叶"]}, {"prompt": "yīyuàn", "answer": "医院", "accept": ["医院"]}, {"prompt": "chūzūchē", "answer": "出租车", "accept": ["出租车"]}, {"prompt": "diànyǐng", "answer": "电影", "accept": ["电影"]}, {"prompt": "dǎzhé", "answer": "打折", "accept": ["打折"]}, {"prompt": "diànshì", "answer": "电视", "accept": ["电视"]}, {"prompt": "cānguān", "answer": "参观", "accept": ["参观"]}, {"prompt": "héshì", "answer": "合适", "accept": ["合适"]}, {"prompt": "míngnián", "answer": "明年", "accept": ["明年"]}], "q42": [{"prompt": "俩 / 他们 / 留学生 / 是 / 不", "answer": "他们俩不是留学生。", "accept": ["他们俩不是留学生"]}, {"prompt": "觉得 / 不 / 我 / 难 / 语法 / 太", "answer": "我觉得语法不太难。", "accept": ["我觉得语法不太难"]}, {"prompt": "红的 / 你 / 还是 / 要 / 蓝的", "answer": "你要红的还是蓝的？", "accept": ["你要红的还是蓝的？", "你要蓝的还是红的？"]}, {"prompt": "寄 / 去 / 包裹 / 邮局 / 我", "answer": "我去邮局寄包裹。", "accept": ["我去邮局寄包裹"]}, {"prompt": "生日 / 几月几号 / 你的 / 是", "answer": "你的生日是几月几号？", "accept": ["你的生日是几月几号？"]}], "q43": [{"prompt": "王老师在吗？我是他的学生。", "answer": "Thầy Vương có ở đây không? Tôi là học sinh của thầy ấy."}, {"prompt": "大概有一百多个职员。", "answer": "Khoảng hơn một trăm nhân viên."}, {"prompt": "那个新的是朋友的，这个旧的是我的。", "answer": "Cái mới kia là của bạn tôi, cái cũ này là của tôi."}, {"prompt": "刚开学，有点儿忙。", "answer": "Vừa mới khai giảng, hơi bận một chút."}, {"prompt": "有时候上网跟朋友聊天儿。", "answer": "Có lúc lên mạng tán gẫu với bạn bè."}, {"prompt": "我准备举行一个生日晚会，你也来参加，好吗？", "answer": "Tôi chuẩn bị tổ chức một buổi tiệc sinh nhật, bạn cũng đến tham gia nhé?"}], "q44": [{"prompt": "Bạn đang làm gì đấy?", "answer": "你在做什么呢？", "accept": ["你在做什么呢？", "你正在做什么呢？", "你正在做什么？"]}, {"prompt": "Chiếc áo lông vũ này hơi dài.", "answer": "这件羽绒服有点儿长。", "accept": ["这件羽绒服有点儿长", "这件羽绒服有一点儿长"]}, {"prompt": "Bạn tốt nghiệp đại học năm nào?", "answer": "你哪一年大学毕业？", "accept": ["你哪一年大学毕业？", "你哪年大学毕业？"]}]}];
+const DURATION = 30 * 60;
+const PTS = { mcq: 0.125, q41: 0.2, q42: 0.3, q44: 0.3 };
+const ESSAY = {
+  q41: "Câu 41. Viết chữ Hán cho các phiên âm sau (2 điểm, mỗi từ 0,2 điểm)",
+  q42: "Câu 42. Sắp xếp các từ sau thành câu hoàn chỉnh (1,5 điểm, mỗi câu 0,3 điểm)",
+  q43: "Câu 43. Dịch các câu sau sang tiếng Việt (0,6 điểm, tự đối chiếu đáp án)",
+  q44: "Câu 44. Dịch các câu sau sang tiếng Trung, viết bằng chữ Hán (0,9 điểm, mỗi câu 0,3 điểm)"
+};
+const GRADED = ["q41","q42","q44"];
+
+const L = i => String.fromCharCode(65 + i);
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm = s => String(s || "").normalize("NFKC").replace(/[\s\p{P}\p{S}]/gu, "");
+const fmt = n => (Math.round(n * 1000) / 1000).toString().replace(".", ",");
+
+let cur = null, mc = [], ess = {}, remain = DURATION, tick = null, startAt = 0, done = false;
+
+function show(id){ ["home","quiz","result"].forEach(s => $(s).classList.toggle("hidden", s !== id)); window.scrollTo(0,0); }
+
+function renderHome(){
+  $("examList").innerHTML = EXAMS.map((e,i) =>
+    `<button class="exam-btn" data-i="${i}"><b>${esc(e.title)}</b><span class="muted">44 câu · 30 phút</span></button>`).join("");
+  $("examList").querySelectorAll(".exam-btn").forEach(b => b.onclick = () => start(+b.dataset.i));
+  ["name","cls"].forEach(id => $(id).addEventListener("input", () => $(id).classList.remove("err")));
+}
+
+function start(i){
+  const miss = [];
+  if(!$("name").value.trim()) miss.push("name");
+  if(!$("cls").value.trim()) miss.push("cls");
+  miss.forEach(id => $(id).classList.add("err"));
+  if(miss.length){ $("homeErr").textContent = "Vui lòng nhập họ tên và lớp đang học trước khi làm bài."; $(miss[0]).focus(); return; }
+  $("homeErr").textContent = "";
+  const ex = EXAMS[i];
+  cur = i; mc = new Array(ex.mcq.length).fill(null); done = false; remain = DURATION; startAt = Date.now();
+  ess = {}; ["q41","q42","q43","q44"].forEach(k => ess[k] = new Array(ex[k].length).fill(""));
+  $("quizTitle").textContent = ex.title;
+
+  let h = `<h2 class="part">Phần I. Trắc nghiệm (40 câu, 5 điểm)</h2>`;
+  ex.mcq.forEach((q,qi) => {
+    if(q.section) h += `<h3>${esc(q.section)}</h3>`;
+    h += `<div class="card q" id="q${qi}"><div class="qt">Câu ${q.n}. ${esc(q.q)}</div>` +
+      q.options.map((o,oi) => `<label class="opt" data-o="${oi}"><input type="radio" name="m${qi}" value="${oi}"><span><b>${L(oi)}.</b> ${esc(o)}</span></label>`).join("") + `</div>`;
+  });
+  h += `<h2 class="part">Phần II. Tự luận</h2>`;
+  ["q41","q42","q43","q44"].forEach(k => {
+    h += `<div class="card"><div class="qt" style="font-weight:600">${ESSAY[k]}</div>` +
+      ex[k].map((it,ii) => `<div class="sub"><div class="p">${ii+1}) ${esc(it.prompt)}</div>` +
+        (k === "q41" ? `<input type="text" data-k="${k}" data-i="${ii}" autocomplete="off" placeholder="Viết chữ Hán">`
+                     : `<textarea rows="1" data-k="${k}" data-i="${ii}" placeholder="${k === "q43" ? "Viết câu dịch tiếng Việt" : "Viết câu bằng chữ Hán"}"></textarea>`) +
+      `</div>`).join("") + `</div>`;
+  });
+  $("questions").innerHTML = h;
+
+  $("questions").querySelectorAll("input[type=radio]").forEach(r => r.onchange = () => {
+    const qi = +r.name.slice(1); mc[qi] = +r.value;
+    document.querySelectorAll(`#q${qi} .opt`).forEach(el => el.classList.toggle("sel", +el.dataset.o === mc[qi]));
+    updateProgress();
+  });
+  $("questions").querySelectorAll("[data-k]").forEach(el => el.addEventListener("input", () => { ess[el.dataset.k][+el.dataset.i] = el.value; updateProgress(); }));
+
+  updateProgress(); updateTimer();
+  clearInterval(tick); tick = setInterval(() => {
+    remain = Math.max(0, DURATION - Math.floor((Date.now() - startAt) / 1000));
+    updateTimer();
+    if(remain === 0) submit(true);
+  }, 500);
+  show("quiz");
+}
+
+function countDone(){
+  let n = mc.filter(a => a !== null).length, t = mc.length;
+  Object.values(ess).forEach(arr => { t += arr.length; n += arr.filter(v => v.trim()).length; });
+  return [n, t];
+}
+function updateProgress(){ const [n,t] = countDone(); $("progress").textContent = `Đã làm ${n}/${t}`; }
+function updateTimer(){
+  const m = Math.floor(remain/60), s = remain % 60;
+  $("timer").textContent = `${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+  $("timer").classList.toggle("low", remain <= 300);
+}
+function confirmSubmit(){
+  const [n,t] = countDone();
+  if(confirm(n < t ? `Em còn ${t-n} câu/ý chưa làm. Em chắc chắn muốn nộp bài?` : "Em chắc chắn muốn nộp bài?")) submit(false);
+}
+
+function submit(auto){
+  if(done) return; done = true; clearInterval(tick);
+  const ex = EXAMS[cur];
+  const wrong = [];
+  let mcRight = 0;
+  ex.mcq.forEach((q,i) => {
+    if(mc[i] === q.answer) mcRight++;
+    else wrong.push(`<div class="wrong"><div class="qt">Câu ${q.n}. ${esc(q.q)}</div>
+      <div>Em chọn: <span class="ans-bad">${mc[i] === null ? "Không trả lời" : L(mc[i]) + ". " + esc(q.options[mc[i]])}</span></div>
+      <div>Đáp án đúng: <span class="ans-ok">${L(q.answer)}. ${esc(q.options[q.answer])}</span></div></div>`);
+  });
+  let essPts = 0, essRight = 0, essTotal = 0;
+  GRADED.forEach(k => ex[k].forEach((it,i) => {
+    essTotal++;
+    const v = ess[k][i];
+    if(v.trim() && it.accept.some(a => norm(a) === norm(v))){ essPts += PTS[k]; essRight++; }
+    else wrong.push(`<div class="wrong"><div class="qt">${esc(ESSAY[k].split(" (")[0])}, ý ${i+1}: ${esc(it.prompt)}</div>
+      <div>Em viết: <span class="ans-bad">${v.trim() ? esc(v.trim()) : "Không trả lời"}</span></div>
+      <div>Đáp án đúng: <span class="ans-ok">${esc(it.answer)}</span>${it.accept.length > 1 ? `<span class="muted"> (chấp nhận: ${it.accept.map(esc).join(" / ")})</span>` : ""}</div></div>`);
+  }));
+  const mcPts = mcRight * PTS.mcq, total = mcPts + essPts;
+  const used = DURATION - remain;
+  $("resInfo").textContent = `${$("name").value.trim()} · Lớp ${$("cls").value.trim()} · ${ex.title}` + (auto ? " · Hết giờ, hệ thống tự nộp bài" : "");
+  $("resScore").textContent = `${fmt(total)} / 9,4 điểm`;
+  $("resStats").innerHTML = `<span>Trắc nghiệm: <b>${mcRight}/40 câu đúng (${fmt(mcPts)}/5 điểm)</b></span>
+    <span>Tự luận câu 41, 42, 44: <b>${essRight}/${essTotal} ý đúng (${fmt(essPts)}/4,4 điểm)</b></span>
+    <span>Thời gian làm: <b>${Math.floor(used/60)} phút ${used%60} giây</b></span>`;
+  $("wrongList").innerHTML = wrong.length ? wrong.join("") : `<div class="allok">Chúc mừng! Em làm đúng tất cả các câu được chấm tự động.</div>`;
+  $("refList").innerHTML = ex.q43.map((it,i) => `<div class="ref"><div class="qt">${i+1}) ${esc(it.prompt)}</div>
+    <div>Em dịch: <b>${ess.q43[i].trim() ? esc(ess.q43[i].trim()) : "Không trả lời"}</b></div>
+    <div>Đáp án tham khảo: <span class="ans-ok">${esc(it.answer)}</span></div></div>`).join("");
+  show("result");
+}
+
+$("submitBtn").onclick = confirmSubmit;
+$("submitBtn2").onclick = confirmSubmit;
+$("retryBtn").onclick = () => start(cur);
+$("homeBtn").onclick = () => show("home");
+window.addEventListener("beforeunload", e => { if(!$("quiz").classList.contains("hidden") && !done){ e.preventDefault(); e.returnValue = ""; } });
+renderHome();
+</script>
+</body>
+</html>
